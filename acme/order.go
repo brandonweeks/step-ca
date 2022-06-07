@@ -25,6 +25,7 @@ const (
 	DNS IdentifierType = "dns"
 	// DNS is the ACME dns identifier type
 	PermanentIdentifier IdentifierType = "permanent-identifier"
+	CA                  IdentifierType = "ca"
 )
 
 // Identifier encodes the type that an order pertains to.
@@ -229,6 +230,7 @@ func (o *Order) sans(csr *x509.CertificateRequest) ([]x509util.SubjectAlternativ
 		case PermanentIdentifier:
 			orderPIDs[indexPID] = n.Value
 			indexPID++
+		case CA:
 		default:
 			return sans, NewErrorISE("unsupported identifier type in order: %s", n.Type)
 		}
