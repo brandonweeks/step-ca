@@ -45,19 +45,6 @@ func TestConfigValidate(t *testing.T) {
 				},
 			}
 		},
-		"empty-address": func(t *testing.T) ConfigValidateTest {
-			return ConfigValidateTest{
-				config: &Config{
-					Root:             []string{"../testdata/secrets/root_ca.crt"},
-					IntermediateCert: "../testdata/secrets/intermediate_ca.crt",
-					IntermediateKey:  "../testdata/secrets/intermediate_ca_key",
-					DNSNames:         []string{"test.smallstep.com"},
-					Password:         "pass",
-					AuthorityConfig:  ac,
-				},
-				err: errors.New("address cannot be empty"),
-			}
-		},
 		"invalid-address": func(t *testing.T) ConfigValidateTest {
 			return ConfigValidateTest{
 				config: &Config{
